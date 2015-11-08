@@ -1,24 +1,24 @@
 Paginate
 ============
 
-Library for creating simple pagination functionality upon RecyclerView or AbsListView.
+Library for creating simple pagination functionality upon `RecyclerView` or `AbsListView`.
 
 Demo
 --------
-<img src="art/demo.gif">
-
 For a working implementation of this project see the `paginate-sample/` folder.
+
+<img src="art/demo.gif">
 
 Setup
 --------
-todo
+adding to maven central in progress
 
 Usage
 --------
 
 Implement `Paginate.Callbacks`
 
-```
+```java
 Paginate.Callbacks callbacks = new Paginate.Callbacks() {
     @Override
     public void onLoadMore() {
@@ -41,7 +41,7 @@ Paginate.Callbacks callbacks = new Paginate.Callbacks() {
 
 **RecyclerView**
 
-```
+```java
 Paginate.with(recyclerView, callbacks)
         .setLoadingTriggerThreshold(2)
         .addLoadingListItem(true)
@@ -55,11 +55,11 @@ Paginate.with(recyclerView, callbacks)
         .build();
 ```
 
-Note: `LayoutManager` and `RecyclerView.Adapter` needs to be set before calling the code above.
+**Note**: `LayoutManager` and `RecyclerView.Adapter` needs to be set before calling the code above.
 
 Implement `LoadingListItemCreator` in order to provide custom loading row view.
 
-```
+```java
 private class CustomLoadingListItemCreator implements LoadingListItemCreator {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -77,7 +77,7 @@ private class CustomLoadingListItemCreator implements LoadingListItemCreator {
 
 **AbsListView**
 
-```
+```java
 Paginate.with(absListView, callbacks)
         .setOnScrollListener(scrollListener) // Delegate scroll listener
         .setLoadingTriggerThreshold(2)
@@ -86,11 +86,11 @@ Paginate.with(absListView, callbacks)
         .build();
 ```
 
-Note: Adapter needs to be set before calling the code above.
+**Note**: Adapter needs to be set before calling the code above.
 
 Implement `LoadingListItemCreator` in order to provide custom loading row view.
 
-```
+```java
 private class CustomLoadingListItemCreator implements LoadingListItemCreator {
     @Override
     public View newView(int position, ViewGroup parent) {
@@ -130,15 +130,15 @@ Marko Milos (marko.milos.hr@gmail.com)
 
 <a href="https://plus.google.com/u/0/+MarkoMilosMM">
   <img alt="Follow me on Google+"
-       src="" />
+       src="https://raw.githubusercontent.com/MarkoMilos/Paginate/master/art/gplus.png" />
 </a>
 <a href="https://twitter.com/markomilos5">
   <img alt="Follow me on Twitter"
-       src="" />
+       src="https://raw.githubusercontent.com/MarkoMilos/Paginate/master/art/twitter.png" />
 </a>
 <a href="https://hr.linkedin.com/in/markomilos">
   <img alt="Follow me on LinkedIn"
-       src="" />
+       src="https://raw.githubusercontent.com/MarkoMilos/Paginate/master/art/linkedin.png" />
 </a>
 
 
