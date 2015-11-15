@@ -1,7 +1,18 @@
 Paginate
 ============
 
-Library for creating simple pagination functionality upon `RecyclerView` or `AbsListView`.
+Android library for creating simple pagination functionality (aka infinite scrolling) upon `RecyclerView` or
+`AbsListView`.
+
+Features
+--------
+* Configuration allows you to setup automatic adding/removing of the loading list item (enabled by default)
+* Custom loading list item - inflate and bind (default loading list item view will be used if custom one is not
+provided)
+* Custom `SpanSizeLookup` for the loading list item when `GridLayoutManager` is used (by default loading list item
+will use full span)
+* Custom loading trigger threshold
+* Support `RecyclerView` (using linear, grid and staggered `LayoutManager`) and `AbsListView` (`ListView` | `GridView`)
 
 Demo
 --------
@@ -11,7 +22,19 @@ For a working implementation of this project see the `paginate-sample/` folder.
 
 Setup
 --------
-adding to maven central in progress
+
+Gradle:
+```groovy
+compile 'com.github.markomilos:paginate:0.5.0'
+```
+or Maven:
+```xml
+<dependency>
+  <groupId>com.github.markomilos</groupId>
+  <artifactId>paginate</artifactId>
+  <version>0.5.0</version>
+</dependency>
+```
 
 Usage
 --------
@@ -46,12 +69,7 @@ Paginate.with(recyclerView, callbacks)
         .setLoadingTriggerThreshold(2)
         .addLoadingListItem(true)
         .setLoadingListItemCreator(new CustomLoadingListItemCreator())
-        .setLoadingListItemSpanSizeLookup(new LoadingListItemSpanLookup() {
-            @Override
-            public int getSpanSize() {
-                return 3; // Loading list item span
-            }
-        })
+        .setLoadingListItemSpanSizeLookup(new CustomLoadingListItemSpanLookup())
         .build();
 ```
 
