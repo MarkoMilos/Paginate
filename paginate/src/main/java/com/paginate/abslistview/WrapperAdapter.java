@@ -67,6 +67,7 @@ class WrapperAdapter extends BaseAdapter implements WrapperListAdapter {
 
     void displayLoadingRow(boolean displayLoadingRow) {
         this.displayLoadingRow = displayLoadingRow;
+        wrappedAdapter.notifyDataSetChanged();
     }
 
     boolean isLoadingRow(int position) {
