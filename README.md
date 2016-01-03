@@ -27,14 +27,14 @@ Setup
 
 Gradle:
 ```groovy
-compile 'com.github.markomilos:paginate:0.5.0'
+compile 'com.github.markomilos:paginate:0.5.1'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.github.markomilos</groupId>
   <artifactId>paginate</artifactId>
-  <version>0.5.0</version>
+  <version>0.5.1</version>
 </dependency>
 ```
 
