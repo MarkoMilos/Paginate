@@ -1,6 +1,8 @@
 Paginate
 ============
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Paginate-green.svg?style=true)](https://android-arsenal.com/details/1/2797)
+
 Android library for creating simple pagination functionality (aka infinite scrolling) upon `RecyclerView` or
 `AbsListView`.
 
