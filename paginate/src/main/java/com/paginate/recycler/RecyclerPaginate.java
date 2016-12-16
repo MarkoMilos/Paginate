@@ -151,6 +151,16 @@ public final class RecyclerPaginate extends Paginate {
         }
     };
 
+    @Override
+    public void onAddLoadingItem(int position) {
+        wrapperAdapter.addLoadingItem(position);
+    }
+
+    @Override
+    public void onRemoveLoadingItem(int position) {
+        wrapperAdapter.removeLoadingItem(position);
+    }
+
     public static class Builder {
 
         private final RecyclerView recyclerView;
