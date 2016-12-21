@@ -84,7 +84,7 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (isDynamicLoadingRow(position)) {
             return;
         }
-        
+
         loadingItemPositions.add(position);
         notifyItemInserted(position);
     }
@@ -95,7 +95,7 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         loadingItemPositions.remove(position);
-        notifyDataSetChanged();
+        notifyItemRemoved(position);
     }
 
     boolean isDisplayLoadingRow() {
