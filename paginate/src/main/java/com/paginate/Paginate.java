@@ -6,7 +6,7 @@ import android.widget.AbsListView;
 import com.paginate.abslistview.AbsListViewPaginate;
 import com.paginate.recycler.RecyclerPaginate;
 
-public abstract class Paginate {
+public abstract class Paginate implements DynamicLoadingItemListener {
 
     public interface Callbacks {
         /** Called when next page of data needs to be loaded. */

@@ -5,6 +5,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 
+
+import com.paginate.MultiPaginateInterface;
 import com.paginate.Paginate;
 
 public final class RecyclerPaginate extends Paginate {
@@ -77,22 +79,35 @@ public final class RecyclerPaginate extends Paginate {
         int visibleItemCount = recyclerView.getChildCount();
         int totalItemCount = recyclerView.getLayoutManager().getItemCount();
 
-        int firstVisibleItemPosition;
+        MultiPaginateInterface adapter = (MultiPaginateInterface) wrapperAdapter.getWrappedAdapter();
+        int visibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition();
+
+        int listType = 0;
+        if (visibleItemCount != 0) {
+            listType = adapter.getCurrentListIndex(visibleItemPosition);
+            totalItemCount = adapter.getListSize(listType);
+        }
+
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-            firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+            if (visibleItemCount > 0) {
+                visibleItemPosition = adapter.globalPositionToLocal(visibleItemPosition, listType);
+                if (visibleItemPosition == -1) {
+                    return;
+                }
+            }
         } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
             // https://code.google.com/p/android/issues/detail?id=181461
             if (recyclerView.getLayoutManager().getChildCount() > 0) {
-                firstVisibleItemPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
+                visibleItemPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
             } else {
-                firstVisibleItemPosition = 0;
+                visibleItemPosition = 0;
             }
         } else {
             throw new IllegalStateException("LayoutManager needs to subclass LinearLayoutManager or StaggeredGridLayoutManager");
         }
 
         // Check if end of the list is reached (counting threshold) or if there is no items at all
-        if ((totalItemCount - visibleItemCount) <= (firstVisibleItemPosition + loadingTriggerThreshold)
+        if ((totalItemCount - visibleItemCount) <= (visibleItemPosition + loadingTriggerThreshold)
                 || totalItemCount == 0) {
             // Call load more only if loading is not currently in progress and if there is more items to load
             if (!callbacks.isLoading() && !callbacks.hasLoadedAllItems()) {
@@ -150,6 +165,16 @@ public final class RecyclerPaginate extends Paginate {
             onAdapterDataChanged();
         }
     };
+
+    @Override
+    public void onAddLoadingItem(int position) {
+        wrapperAdapter.addLoadingItem(position);
+    }
+
+    @Override
+    public void onRemoveLoadingItem(int position) {
+        wrapperAdapter.removeLoadingItem(position);
+    }
 
     public static class Builder {
 

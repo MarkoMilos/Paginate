@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    compile deps.recyclerview
+    compile 'com.android.support:recyclerview-v7:25.1.0'
 }
 
-apply from: rootProject.file('gradle/maven-push.gradle')
+//apply from: rootProject.file('gradle/maven-push.gradle')

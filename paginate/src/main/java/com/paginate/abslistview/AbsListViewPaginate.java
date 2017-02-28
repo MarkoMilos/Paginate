@@ -89,6 +89,16 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
         }
     };
 
+    @Override
+    public void onAddLoadingItem(int position) {
+
+    }
+
+    @Override
+    public void onRemoveLoadingItem(int position) {
+
+    }
+
     public static class Builder {
         private final AbsListView absListView;
         private final Paginate.Callbacks callbacks;
