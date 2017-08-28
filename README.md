@@ -1,5 +1,5 @@
-Paginate
-============
+Paginate - Forked version
+=========================
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Paginate-green.svg?style=true)](https://android-arsenal.com/details/1/2797)
 
@@ -27,7 +27,10 @@ Setup
 
 Gradle:
 ```groovy
-compile 'com.github.markomilos:paginate:0.5.1'
+maven { url "https://jitpack.io" }
+
+
+compile 'com.github.johnchrisdc:Paginate:v0.5.2'
 ```
 or Maven:
 ```xml
