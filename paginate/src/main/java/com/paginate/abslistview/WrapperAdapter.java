@@ -80,4 +80,10 @@ class WrapperAdapter extends BaseAdapter implements WrapperListAdapter {
         return displayLoadingRow ? getCount() - 1 : -1;
     }
 
+    public void setPaginationFailureMode(boolean paginationFailureMode) {
+        if(paginationFailureMode)
+            loadingListItemCreator.setFailureMode();
+        else
+            loadingListItemCreator.setLoadingMode();
+    }
 }

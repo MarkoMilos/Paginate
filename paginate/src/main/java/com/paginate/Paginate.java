@@ -39,6 +39,8 @@ public abstract class Paginate {
      */
     abstract public void setHasMoreDataToLoad(boolean hasMoreDataToLoad);
 
+    abstract public void setPaginationFailureMode(boolean isPaginationFailureMode);
+
     /**
      * Call unbind to detach list (RecyclerView or AbsListView) from Paginate when pagination functionality is no
      * longer needed on the list.

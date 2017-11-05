@@ -77,4 +77,11 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private int getLoadingRowPosition() {
         return displayLoadingRow ? getItemCount() - 1 : -1;
     }
+
+    public void setPaginationFailureMode(boolean paginationFailureMode) {
+      if(paginationFailureMode)
+          loadingListItemCreator.setFailureMode();
+        else
+          loadingListItemCreator.setLoadingMode();
+    }
 }
