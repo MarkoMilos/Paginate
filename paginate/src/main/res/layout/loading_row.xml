@@ -5,8 +5,21 @@
              android:padding="10dp">
 
     <ProgressBar
+        android:id="@+id/progressBar"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_gravity="center"/>
+
+    <android.support.v7.widget.AppCompatButton
+        android:visibility="gone"
+        android:textAllCaps="false"
+        style="@style/Base.Widget.AppCompat.Button"
+        android:layout_gravity="center"
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Retry" />
+
+
 
 </FrameLayout>

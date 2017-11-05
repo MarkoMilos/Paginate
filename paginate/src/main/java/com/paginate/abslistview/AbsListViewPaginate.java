@@ -55,6 +55,11 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
     }
 
     @Override
+    public void setPaginationFailureMode(boolean isPaginationFailureMode) {
+        wrapperAdapter.setPaginationFailureMode(isPaginationFailureMode);
+    }
+
+    @Override
     public void onEndReached() {
         if (!callbacks.isLoading() && !callbacks.hasLoadedAllItems()) {
             callbacks.onLoadMore();

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.paginate.adapter.RecyclerPersonAdapter;
@@ -19,6 +20,7 @@ import com.paginate.Paginate;
 import com.paginate.recycler.LoadingListItemCreator;
 import com.paginate.recycler.LoadingListItemSpanLookup;
 
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 public class RecyclerViewExampleActivity extends BaseActivity implements Paginate.Callbacks {
@@ -128,6 +130,8 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
     };
 
     private class CustomLoadingListItemCreator implements LoadingListItemCreator {
+        VH vh;
+        Paginate.Callbacks callbacks = null;
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -146,14 +150,45 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
                 params.setFullSpan(true);
             }
         }
+
+        @Override
+        public void setFailureMode() {
+            if(vh.circularProgressbar!=null) vh.circularProgressbar.setVisibility(View.GONE);
+            if(vh.tvLoading!=null) vh.tvLoading.setText("Loading failed.");
+            if(vh.buttonRetry!=null) {
+                vh.buttonRetry.setVisibility(View.VISIBLE);
+                vh.buttonRetry.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (callbacks != null)
+                            callbacks.onLoadMore();
+                    }
+                });
+            }
+        }
+
+        @Override
+        public void setLoadingMode() {
+            if(vh.circularProgressbar!=null) vh.circularProgressbar.setVisibility(View.VISIBLE);
+            if(vh.buttonRetry!=null) vh.buttonRetry.setVisibility(View.GONE);
+            if(vh.tvLoading!=null) vh.tvLoading.setText("Loading...");
+        }
+
+        @Override
+        public void setCallbacks(Paginate.Callbacks callbacks) {
+            this.callbacks = callbacks;
+        }
     }
 
     static class VH extends RecyclerView.ViewHolder {
         TextView tvLoading;
-
+        Button buttonRetry;
+        CircularProgressBar circularProgressbar;
         public VH(View itemView) {
             super(itemView);
             tvLoading = (TextView) itemView.findViewById(R.id.tv_loading_text);
+            buttonRetry = (Button) itemView.findViewById(R.id.button_retry);
+            circularProgressbar = (CircularProgressBar) itemView.findViewById(R.id.circular_progressbar);
         }
     }
 

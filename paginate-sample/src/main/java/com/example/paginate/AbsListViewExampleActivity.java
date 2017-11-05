@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,8 @@ import com.example.paginate.adapter.PersonAdapter;
 import com.example.paginate.data.DataProvider;
 import com.paginate.Paginate;
 import com.paginate.abslistview.LoadingListItemCreator;
+
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 
 public class AbsListViewExampleActivity extends BaseActivity implements
         Paginate.Callbacks,
@@ -130,6 +133,8 @@ public class AbsListViewExampleActivity extends BaseActivity implements
     };
 
     private class CustomLoadingListItemCreator implements LoadingListItemCreator {
+        VH vh;
+        Paginate.Callbacks callbacks = null;
         @Override
         public View newView(int position, ViewGroup parent) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -140,16 +145,47 @@ public class AbsListViewExampleActivity extends BaseActivity implements
 
         @Override
         public void bindView(int position, View view) {
-            VH vh = (VH) view.getTag();
+            vh = (VH) view.getTag();
             vh.tvLoading.setText(String.format("Total items loaded: %d.\nLoading more...", adapter.getCount()));
+        }
+
+        @Override
+        public void setFailureMode() {
+            if(vh.circularProgressbar!=null) vh.circularProgressbar.setVisibility(View.GONE);
+            if(vh.tvLoading!=null) vh.tvLoading.setText("Loading failed.");
+            if(vh.buttonRetry!=null) {
+                vh.buttonRetry.setVisibility(View.VISIBLE);
+                vh.buttonRetry.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (callbacks != null)
+                            callbacks.onLoadMore();
+                    }
+                });
+            }
+        }
+
+        @Override
+        public void setLoadingMode() {
+            if(vh.circularProgressbar!=null) vh.circularProgressbar.setVisibility(View.VISIBLE);
+            if(vh.buttonRetry!=null) vh.buttonRetry.setVisibility(View.GONE);
+            if(vh.tvLoading!=null) vh.tvLoading.setText("Loading...");
+        }
+
+        @Override
+        public void setCallbacks(Paginate.Callbacks callbacks) {
+            this.callbacks = callbacks;
         }
     }
 
     static class VH {
         TextView tvLoading;
-
+        Button buttonRetry;
+        CircularProgressBar circularProgressbar;
         public VH(View itemView) {
             tvLoading = (TextView) itemView.findViewById(R.id.tv_loading_text);
+            buttonRetry = (Button) itemView.findViewById(R.id.button_retry);
+            circularProgressbar = (CircularProgressBar) itemView.findViewById(R.id.circular_progressbar);
         }
     }
 

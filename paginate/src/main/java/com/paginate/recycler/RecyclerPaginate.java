@@ -58,6 +58,11 @@ public final class RecyclerPaginate extends Paginate {
     }
 
     @Override
+    public void setPaginationFailureMode(boolean isPaginationFailureMode) {
+        wrapperAdapter.setPaginationFailureMode(isPaginationFailureMode);
+    }
+
+    @Override
     public void unbind() {
         recyclerView.removeOnScrollListener(mOnScrollListener);   // Remove scroll listener
         if (recyclerView.getAdapter() instanceof WrapperAdapter) {
@@ -238,6 +243,7 @@ public final class RecyclerPaginate extends Paginate {
                 loadingListItemSpanLookup = new DefaultLoadingListItemSpanLookup(recyclerView.getLayoutManager());
             }
 
+            loadingListItemCreator.setCallbacks(callbacks);
             return new RecyclerPaginate(recyclerView, callbacks, loadingTriggerThreshold, addLoadingListItem,
                     loadingListItemCreator, loadingListItemSpanLookup);
         }
