@@ -4,6 +4,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
+import android.view.View;
 
 import com.paginate.Paginate;
 
@@ -64,7 +65,7 @@ public final class RecyclerPaginate extends Paginate {
             WrapperAdapter wrapperAdapter = (WrapperAdapter) recyclerView.getAdapter();
             RecyclerView.Adapter adapter = wrapperAdapter.getWrappedAdapter();
             adapter.unregisterAdapterDataObserver(mDataObserver); // Remove data observer
-            recyclerView.setAdapter(adapter);                     // Swap back original adapter
+            swapBackAdapter(adapter);                             // Swap back original adapter
         }
         if (recyclerView.getLayoutManager() instanceof GridLayoutManager && wrapperSpanSizeLookup != null) {
             // Swap back original SpanSizeLookup
@@ -98,6 +99,29 @@ public final class RecyclerPaginate extends Paginate {
             if (!callbacks.isLoading() && !callbacks.hasLoadedAllItems()) {
                 callbacks.onLoadMore();
             }
+        }
+    }
+
+    private void swapBackAdapter(RecyclerView.Adapter adapter) {
+        // trying to retain the current scrolling position
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+            int firstVisibleItemPosition = linearManager.findFirstVisibleItemPosition();
+            View firstVisibleChild = recyclerView.getChildAt(0);
+            int xPixelScroll, yPixelScroll;
+            if (!linearManager.getReverseLayout()) {
+                xPixelScroll = firstVisibleChild.getLeft();
+                yPixelScroll = firstVisibleChild.getTop();
+            } else {
+                xPixelScroll = firstVisibleChild.getRight() - recyclerView.getWidth();
+                yPixelScroll = firstVisibleChild.getBottom() - recyclerView.getHeight();
+            }
+            recyclerView.setAdapter(adapter);
+            recyclerView.scrollToPosition(firstVisibleItemPosition);
+            recyclerView.scrollBy(-xPixelScroll, -yPixelScroll);
+        } else {
+            recyclerView.setAdapter(adapter);
         }
     }
 
