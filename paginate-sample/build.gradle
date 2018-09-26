@@ -14,12 +14,13 @@ android {
 }
 
 dependencies {
-    compile deps.appcompat
-    compile deps.supportv4
-    compile deps.cardview
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
 
-    compile deps.recyclerviewanimators
-    compile deps.smoothprogressbar
+    implementation deps.recyclerviewanimators
+    implementation deps.smoothprogressbar
 
-    compile project(':paginate')
+    implementation project(':paginate')
 }

@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    compile deps.recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 
 apply from: rootProject.file('gradle/maven-push.gradle')

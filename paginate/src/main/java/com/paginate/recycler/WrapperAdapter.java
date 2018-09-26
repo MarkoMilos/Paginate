@@ -1,6 +1,6 @@
 package com.paginate.recycler;
 
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 
 class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
