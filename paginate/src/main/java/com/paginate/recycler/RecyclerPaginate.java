@@ -108,7 +108,7 @@ public final class RecyclerPaginate extends Paginate {
         if (layoutManager instanceof LinearLayoutManager) {
             LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
             int firstVisibleItemPosition = linearManager.findFirstVisibleItemPosition();
-            View firstVisibleChild = recyclerView.getChildAt(0);
+            View firstVisibleChild = layoutManager.findViewByPosition(firstVisibleItemPosition);
             int xPixelScroll, yPixelScroll;
             if (!linearManager.getReverseLayout()) {
                 xPixelScroll = firstVisibleChild.getLeft();
