@@ -1,9 +1,10 @@
 package com.paginate.recycler;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.paginate.R;
 
@@ -11,7 +12,7 @@ import com.paginate.R;
 public interface LoadingListItemCreator {
 
     /**
-     * Create new loading list item {@link android.support.v7.widget.RecyclerView.ViewHolder}.
+     * Create new loading list item {@link androidx.recyclerview.widget.RecyclerView.ViewHolder}.
      *
      * @param parent   parent ViewGroup.
      * @param viewType type of the loading list item.

@@ -10,7 +10,7 @@ android {
 }
 
 dependencies {
-    compile deps.recyclerview
+    implementation deps.recyclerview
 }
 
 apply from: rootProject.file('gradle/maven-push.gradle')

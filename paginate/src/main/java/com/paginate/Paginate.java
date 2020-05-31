@@ -1,7 +1,8 @@
 package com.paginate;
 
-import android.support.v7.widget.RecyclerView;
 import android.widget.AbsListView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.paginate.abslistview.AbsListViewPaginate;
 import com.paginate.recycler.RecyclerPaginate;
