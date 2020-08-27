@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,22 +17,22 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="48dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_weight="1"
-            android:gravity="center_vertical|right"
+            android:gravity="center_vertical|end"
             android:orientation="vertical">
 
             <TextView
                 style="@android:style/TextAppearance.Holo.Widget.ActionBar.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"/>
+                android:text="@string/app_name" />
 
             <TextView
                 style="@android:style/TextAppearance.Holo.Widget.ActionBar.Subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Settings"/>
+                android:text="@string/settings" />
 
         </LinearLayout>
 
@@ -41,7 +40,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:scaleType="center"
-            android:src="@drawable/app_icon"/>
+            android:src="@drawable/app_icon" />
 
     </LinearLayout>
 
@@ -50,71 +49,71 @@
         android:layout_height="1dp"
         android:layout_columnSpan="2"
         android:layout_gravity="start|fill_horizontal"
-        android:background="#a7a4a4"/>
+        android:background="#a7a4a4" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Threshold"/>
+        android:text="@string/threshold" />
 
     <Spinner
         android:id="@+id/spinner_threshold"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Pages"/>
+        android:text="@string/pages" />
 
     <Spinner
         android:id="@+id/spinner_pages"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Items per page"/>
+        android:text="@string/items_per_page" />
 
     <Spinner
         android:id="@+id/spinner_items_per_page"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Delay (ms)"/>
+        android:text="@string/delay_ms" />
 
     <Spinner
         android:id="@+id/spinner_delay"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Add loading row"/>
+        android:text="@string/add_loading_row" />
 
     <CheckBox
         android:id="@+id/cb_add_loading_row"
-        android:layout_gravity="start|center_vertical"/>
+        android:layout_gravity="start|center_vertical" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Custom row"/>
+        android:text="@string/custom_row" />
 
     <CheckBox
         android:id="@+id/cb_custom_row"
-        android:layout_gravity="start|center_vertical"/>
+        android:layout_gravity="start|center_vertical" />
 
     <!-- RECYCLER ONLY OPTIONS -->
 
@@ -122,88 +121,88 @@
         android:layout_height="wrap_content"
         android:layout_columnSpan="2"
         android:layout_gravity="start|center_vertical|fill_horizontal"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center_vertical"
-        android:text="RECYCLER VIEW"
-        android:textStyle="bold"/>
+        android:text="@string/recycler_view"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_columnSpan="2"
         android:layout_gravity="start|fill_horizontal"
-        android:background="#a7a4a4"/>
+        android:background="#a7a4a4" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Layout Manager"/>
+        android:text="@string/layout_manager" />
 
     <Spinner
         android:id="@+id/spinner_layout_mng"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Orientation"/>
+        android:text="@string/orientation" />
 
     <Spinner
         android:id="@+id/spinner_orientation"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Reverse"/>
+        android:text="@string/reverse" />
 
     <CheckBox
         android:id="@+id/cb_reverse"
-        android:layout_gravity="start|center_vertical"/>
+        android:layout_gravity="start|center_vertical" />
 
     <TextView
         android:layout_height="wrap_content"
         android:layout_columnSpan="2"
         android:layout_gravity="start|center_vertical|fill_horizontal"
-        android:layout_marginBottom="4dp"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="4dp"
         android:gravity="center_vertical"
-        android:text="ABSLISTVIEW"
-        android:textStyle="bold"/>
+        android:text="@string/abslistview"
+        android:textStyle="bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_columnSpan="2"
         android:layout_gravity="start|fill_horizontal"
-        android:background="#a7a4a4"/>
+        android:background="#a7a4a4" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Type"/>
+        android:text="@string/type" />
 
     <Spinner
         android:id="@+id/spinner_abs_list_type"
         android:layout_width="0dp"
-        android:layout_gravity="start|center_vertical|fill_horizontal"/>
+        android:layout_gravity="start|center_vertical|fill_horizontal" />
 
     <TextView
         android:layout_height="45dp"
         android:layout_gravity="start|center_vertical"
         android:gravity="center_vertical"
-        android:text="Header &amp; footer"/>
+        android:text="@string/header_amp_footer" />
 
     <CheckBox
         android:id="@+id/cb_header_and_footer"
-        android:layout_gravity="start|center_vertical"/>
+        android:layout_gravity="start|center_vertical" />
 
 </GridLayout>

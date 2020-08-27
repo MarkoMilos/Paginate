@@ -1,18 +1,20 @@
 package com.example.paginate.adapter;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.paginate.R;
 import com.example.paginate.data.Person;
 
 import java.util.List;
 
-public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAdapter.PersonVH> implements RecyclerOnItemClickListener {
+public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAdapter.PersonVH> implements
+        RecyclerOnItemClickListener {
 
     private final List<Person> data;
 
@@ -29,7 +31,8 @@ public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAd
     @Override
     public void onBindViewHolder(PersonVH holder, final int position) {
         Person person = data.get(position);
-        holder.tvFullName.setText(String.format("%s %s, %d", person.getFirstName(), person.getLastName(), person.getAge()));
+        holder.tvFullName
+                .setText(String.format("%s %s, %d", person.getFirstName(), person.getLastName(), person.getAge()));
     }
 
     @Override

@@ -46,7 +46,8 @@ public class PersonAdapter extends BindableAdapter<Person> {
     @Override
     public void bindView(Person person, int position, View view) {
         PersonVH holder = (PersonVH) view.getTag();
-        holder.tvFullName.setText(String.format("%s %s, %d", person.getFirstName(), person.getLastName(), person.getAge()));
+        holder.tvFullName
+                .setText(String.format("%s %s, %d", person.getFirstName(), person.getLastName(), person.getAge()));
     }
 
     public void add(List<Person> data) {

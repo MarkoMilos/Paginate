@@ -6,7 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-/** An implementation of {@link BaseAdapter} which uses the new/bind pattern for its views. */
+/**
+ * An implementation of {@link BaseAdapter} which uses the new/bind pattern for its views.
+ */
 abstract class BindableAdapter<T> extends BaseAdapter {
 
     private final Context context;
@@ -38,10 +40,14 @@ abstract class BindableAdapter<T> extends BaseAdapter {
         return view;
     }
 
-    /** Create a new instance of a view for the specified position. */
+    /**
+     * Create a new instance of a view for the specified position.
+     */
     public abstract View newView(LayoutInflater inflater, int position, ViewGroup container);
 
-    /** Bind the data for the specified {@code position} to the view. */
+    /**
+     * Bind the data for the specified {@code position} to the view.
+     */
     public abstract void bindView(T item, int position, View view);
 
     @Override
@@ -58,12 +64,16 @@ abstract class BindableAdapter<T> extends BaseAdapter {
         return view;
     }
 
-    /** Create a new instance of a drop-down view for the specified position. */
+    /**
+     * Create a new instance of a drop-down view for the specified position.
+     */
     public View newDropDownView(LayoutInflater inflater, int position, ViewGroup container) {
         return newView(inflater, position, container);
     }
 
-    /** Bind the data for the specified {@code position} to the drop-down view. */
+    /**
+     * Bind the data for the specified {@code position} to the drop-down view.
+     */
     public void bindDropDownView(T item, int position, View view) {
         bindView(item, position, view);
     }

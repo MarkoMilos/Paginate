@@ -15,12 +15,14 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
     private EndScrollListener scrollListener;
     private WrapperAdapter wrapperAdapter;
 
-    AbsListViewPaginate(AbsListView absListView,
-                        Paginate.Callbacks callbacks,
-                        int loadingTriggerThreshold,
-                        AbsListView.OnScrollListener onScrollListener,
-                        boolean addLoadingListItem,
-                        LoadingListItemCreator loadingListItemCreator) {
+    AbsListViewPaginate(
+            AbsListView absListView,
+            Paginate.Callbacks callbacks,
+            int loadingTriggerThreshold,
+            AbsListView.OnScrollListener onScrollListener,
+            boolean addLoadingListItem,
+            LoadingListItemCreator loadingListItemCreator
+    ) {
         this.absListView = absListView;
         this.callbacks = callbacks;
 
@@ -170,7 +172,8 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
             }
 
             return new AbsListViewPaginate(absListView, callbacks, loadingTriggerThreshold, onScrollListener,
-                    addLoadingListItem, loadingListItemCreator);
+                    addLoadingListItem, loadingListItemCreator
+            );
         }
     }
 

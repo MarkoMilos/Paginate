@@ -4,5 +4,23 @@
     <string name="app_name">Paginate Sample</string>
     <string name="drawer_closed">Drawer closed</string>
     <string name="drawer_open">Drawer open</string>
+    <string name="footer">FOOTER</string>
+    <string name="header">HEADER</string>
+    <string name="settings">Settings</string>
+    <string name="threshold">Threshold</string>
+    <string name="pages">Pages</string>
+    <string name="items_per_page">Items per page</string>
+    <string name="delay_ms">Delay (ms)</string>
+    <string name="add_loading_row">Add loading row</string>
+    <string name="custom_row">Custom row</string>
+    <string name="recycler_view">RECYCLER VIEW</string>
+    <string name="layout_manager">Layout Manager</string>
+    <string name="orientation">Orientation</string>
+    <string name="reverse">Reverse</string>
+    <string name="abslistview">ABSLISTVIEW</string>
+    <string name="type">Type</string>
+    <string name="header_amp_footer"><![CDATA[Header & footer]]></string>
+    <string name="recyclerview_example">RecyclerView example</string>
+    <string name="abslistview_example">AbsListView example</string>
 
 </resources>

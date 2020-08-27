@@ -1,9 +1,9 @@
 package com.paginate.recycler;
 
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.paginate.Paginate;
 
@@ -15,12 +15,14 @@ public final class RecyclerPaginate extends Paginate {
     private WrapperAdapter wrapperAdapter;
     private WrapperSpanSizeLookup wrapperSpanSizeLookup;
 
-    RecyclerPaginate(RecyclerView recyclerView,
-                     Paginate.Callbacks callbacks,
-                     int loadingTriggerThreshold,
-                     boolean addLoadingListItem,
-                     LoadingListItemCreator loadingListItemCreator,
-                     LoadingListItemSpanLookup loadingListItemSpanLookup) {
+    RecyclerPaginate(
+            RecyclerView recyclerView,
+            Paginate.Callbacks callbacks,
+            int loadingTriggerThreshold,
+            boolean addLoadingListItem,
+            LoadingListItemCreator loadingListItemCreator,
+            LoadingListItemSpanLookup loadingListItemSpanLookup
+    ) {
         this.recyclerView = recyclerView;
         this.callbacks = callbacks;
         this.loadingTriggerThreshold = loadingTriggerThreshold;
@@ -40,7 +42,8 @@ public final class RecyclerPaginate extends Paginate {
                 wrapperSpanSizeLookup = new WrapperSpanSizeLookup(
                         ((GridLayoutManager) recyclerView.getLayoutManager()).getSpanSizeLookup(),
                         loadingListItemSpanLookup,
-                        wrapperAdapter);
+                        wrapperAdapter
+                );
                 ((GridLayoutManager) recyclerView.getLayoutManager()).setSpanSizeLookup(wrapperSpanSizeLookup);
             }
         }
@@ -79,16 +82,19 @@ public final class RecyclerPaginate extends Paginate {
 
         int firstVisibleItemPosition;
         if (recyclerView.getLayoutManager() instanceof LinearLayoutManager) {
-            firstVisibleItemPosition = ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
+            firstVisibleItemPosition =
+                    ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition();
         } else if (recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager) {
             // https://code.google.com/p/android/issues/detail?id=181461
             if (recyclerView.getLayoutManager().getChildCount() > 0) {
-                firstVisibleItemPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPositions(null)[0];
+                firstVisibleItemPosition = ((StaggeredGridLayoutManager) recyclerView.getLayoutManager())
+                        .findFirstVisibleItemPositions(null)[0];
             } else {
                 firstVisibleItemPosition = 0;
             }
         } else {
-            throw new IllegalStateException("LayoutManager needs to subclass LinearLayoutManager or StaggeredGridLayoutManager");
+            throw new IllegalStateException(
+                    "LayoutManager needs to subclass LinearLayoutManager or StaggeredGridLayoutManager");
         }
 
         // Check if end of the list is reached (counting threshold) or if there is no items at all
@@ -239,7 +245,8 @@ public final class RecyclerPaginate extends Paginate {
             }
 
             return new RecyclerPaginate(recyclerView, callbacks, loadingTriggerThreshold, addLoadingListItem,
-                    loadingListItemCreator, loadingListItemSpanLookup);
+                    loadingListItemCreator, loadingListItemSpanLookup
+            );
         }
     }
 

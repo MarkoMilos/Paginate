@@ -1,6 +1,6 @@
 package com.paginate.recycler;
 
-import android.support.v7.widget.GridLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 
 class WrapperSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
 
@@ -8,9 +8,11 @@ class WrapperSpanSizeLookup extends GridLayoutManager.SpanSizeLookup {
     private final LoadingListItemSpanLookup loadingListItemSpanLookup;
     private final WrapperAdapter wrapperAdapter;
 
-    public WrapperSpanSizeLookup(GridLayoutManager.SpanSizeLookup gridSpanSizeLookup,
-                                 LoadingListItemSpanLookup loadingListItemSpanLookup,
-                                 WrapperAdapter wrapperAdapter) {
+    public WrapperSpanSizeLookup(
+            GridLayoutManager.SpanSizeLookup gridSpanSizeLookup,
+            LoadingListItemSpanLookup loadingListItemSpanLookup,
+            WrapperAdapter wrapperAdapter
+    ) {
         this.wrappedSpanSizeLookup = gridSpanSizeLookup;
         this.loadingListItemSpanLookup = loadingListItemSpanLookup;
         this.wrapperAdapter = wrapperAdapter;

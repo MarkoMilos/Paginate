@@ -1,6 +1,8 @@
 package com.example.paginate.data;
 
-/** Example model class */
+/**
+ * Example model class
+ */
 public class Person {
 
     private String firstName;

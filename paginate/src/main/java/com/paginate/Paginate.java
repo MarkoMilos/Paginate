@@ -1,7 +1,8 @@
 package com.paginate;
 
-import android.support.v7.widget.RecyclerView;
 import android.widget.AbsListView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.paginate.abslistview.AbsListViewPaginate;
 import com.paginate.recycler.RecyclerPaginate;
@@ -9,7 +10,9 @@ import com.paginate.recycler.RecyclerPaginate;
 public abstract class Paginate {
 
     public interface Callbacks {
-        /** Called when next page of data needs to be loaded. */
+        /**
+         * Called when next page of data needs to be loaded.
+         */
         void onLoadMore();
 
         /**

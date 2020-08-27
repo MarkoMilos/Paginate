@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 
 import com.paginate.R;
 
-/** AbsListView creator that will be called to create and bind loading list item */
+/**
+ * AbsListView creator that will be called to create and bind loading list item
+ */
 public interface LoadingListItemCreator {
 
     /**
