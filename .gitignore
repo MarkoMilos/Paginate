@@ -1,7 +1,23 @@
-.gradle
-/local.properties
-.DS_Store
-/build
-*/build
-*.iml
+# IntelliJ
 .idea
+*.iml
+*.iws
+*.ipr
+classes
+gen-external-apklibs
+
+# Eclipse
+.classpath
+.project
+.settings
+eclipsebin
+
+# Gradle
+.gradle
+jniLibs
+build
+local.properties
+reports
+
+# macOS
+.DS_Store

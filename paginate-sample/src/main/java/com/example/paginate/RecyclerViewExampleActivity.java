@@ -1,25 +1,25 @@
 package com.example.paginate;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.OrientationHelper;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.OrientationHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.example.paginate.adapter.RecyclerPersonAdapter;
 import com.example.paginate.data.DataProvider;
 import com.paginate.Paginate;
 import com.paginate.recycler.LoadingListItemCreator;
 import com.paginate.recycler.LoadingListItemSpanLookup;
-
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 
 public class RecyclerViewExampleActivity extends BaseActivity implements Paginate.Callbacks {
 
@@ -54,12 +54,10 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
 
         int layoutOrientation;
         switch (orientation) {
-            case VERTICAL:
-                layoutOrientation = OrientationHelper.VERTICAL;
-                break;
             case HORIZONTAL:
                 layoutOrientation = OrientationHelper.HORIZONTAL;
                 break;
+            case VERTICAL: // fall through
             default:
                 layoutOrientation = OrientationHelper.VERTICAL;
         }
@@ -84,20 +82,19 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
         }
 
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setItemAnimator(new SlideInUpAnimator());
         recyclerView.setAdapter(adapter);
 
         paginate = Paginate.with(recyclerView, this)
-                .setLoadingTriggerThreshold(threshold)
-                .addLoadingListItem(addLoadingRow)
-                .setLoadingListItemCreator(customLoadingListItem ? new CustomLoadingListItemCreator() : null)
-                .setLoadingListItemSpanSizeLookup(new LoadingListItemSpanLookup() {
-                    @Override
-                    public int getSpanSize() {
-                        return GRID_SPAN;
-                    }
-                })
-                .build();
+            .setLoadingTriggerThreshold(threshold)
+            .addLoadingListItem(addLoadingRow)
+            .setLoadingListItemCreator(customLoadingListItem ? new CustomLoadingListItemCreator() : null)
+            .setLoadingListItemSpanSizeLookup(new LoadingListItemSpanLookup() {
+                @Override
+                public int getSpanSize() {
+                    return GRID_SPAN;
+                }
+            })
+            .build();
     }
 
     @Override
@@ -135,6 +132,7 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
             return new VH(view);
         }
 
+        @SuppressLint("DefaultLocale")
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             VH vh = (VH) holder;

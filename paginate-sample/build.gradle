@@ -1,25 +1,25 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
         applicationId "com.example.paginate"
-        minSdkVersion rootProject.ext.sampleMinSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
         versionCode 1
         versionName "1.0.0"
+    }
+
+    compileOptions {
+        sourceCompatibility versions.sourceCompatibility
+        targetCompatibility versions.targetCompatibility
     }
 }
 
 dependencies {
-    compile deps.appcompat
-    compile deps.supportv4
-    compile deps.cardview
-
-    compile deps.recyclerviewanimators
-    compile deps.smoothprogressbar
-
-    compile project(':paginate')
+    implementation project(':paginate')
+    implementation deps.appcompat
+    implementation deps.material
+    implementation deps.smoothprogressbar
 }

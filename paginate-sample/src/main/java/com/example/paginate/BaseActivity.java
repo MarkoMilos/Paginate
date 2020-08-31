@@ -2,11 +2,6 @@ package com.example.paginate;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -14,6 +9,12 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.paginate.adapter.EnumAdapter;
 import com.example.paginate.adapter.IntegerAdapter;
@@ -91,20 +92,20 @@ public abstract class BaseActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
 
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_closed);
-        drawerLayout.setDrawerListener(drawerToggle);
+        drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
     }
 
     private void setupOptions() {
-
         // Common options
-
         Spinner thresholdView = (Spinner) findViewById(R.id.spinner_threshold);
         final IntegerAdapter thresholdAdapter = new IntegerAdapter(this, new int[]{0, 1, 2, 3, 4, 5, 6, 7});
         thresholdView.setAdapter(thresholdAdapter);
@@ -161,7 +162,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         Spinner networkDelayView = (Spinner) findViewById(R.id.spinner_delay);
         final IntegerAdapter delayAdapter = new IntegerAdapter(this, new int[]{1000, 2000, 3000, 5000});
         networkDelayView.setAdapter(delayAdapter);
-        networkDelayView.setSelection(delayAdapter.getPositionForValue(networkDelay));
+        networkDelayView.setSelection(delayAdapter.getPositionForValue((int) networkDelay));
         networkDelayView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
@@ -197,8 +198,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         });
 
-        // Recycler specific options
-
+        // RecyclerView specific options
         Spinner layoutManagerView = (Spinner) findViewById(R.id.spinner_layout_mng);
         final EnumAdapter<LayoutManagerEnum> layoutManagerAdapter = new EnumAdapter<>(this, LayoutManagerEnum.class);
         layoutManagerView.setAdapter(layoutManagerAdapter);
@@ -248,7 +248,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         // AbsListView specific options
-
         Spinner absListViewTypeView = (Spinner) findViewById(R.id.spinner_abs_list_type);
         final EnumAdapter<AbsListViewType> absListViewTypeAdapter = new EnumAdapter<>(this, AbsListViewType.class);
         absListViewTypeView.setAdapter(absListViewTypeAdapter);

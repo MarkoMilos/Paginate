@@ -2,7 +2,6 @@ package com.paginate.abslistview;
 
 import android.database.DataSetObserver;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.HeaderViewListAdapter;
 
@@ -15,12 +14,14 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
     private EndScrollListener scrollListener;
     private WrapperAdapter wrapperAdapter;
 
-    AbsListViewPaginate(AbsListView absListView,
-                        Paginate.Callbacks callbacks,
-                        int loadingTriggerThreshold,
-                        AbsListView.OnScrollListener onScrollListener,
-                        boolean addLoadingListItem,
-                        LoadingListItemCreator loadingListItemCreator) {
+    AbsListViewPaginate(
+        AbsListView absListView,
+        Paginate.Callbacks callbacks,
+        int loadingTriggerThreshold,
+        AbsListView.OnScrollListener onScrollListener,
+        boolean addLoadingListItem,
+        LoadingListItemCreator loadingListItemCreator
+    ) {
         this.absListView = absListView;
         this.callbacks = callbacks;
 
@@ -43,7 +44,7 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
             // Wrap existing adapter with new adapter that will add loading row
             wrapperAdapter = new WrapperAdapter(adapter, loadingListItemCreator);
             adapter.registerDataSetObserver(dataSetObserver);
-            ((AdapterView) absListView).setAdapter(wrapperAdapter);
+            absListView.setAdapter(wrapperAdapter);
         }
     }
 
@@ -71,7 +72,7 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
             WrapperAdapter wrapperAdapter = (WrapperAdapter) absListView.getAdapter();
             BaseAdapter adapter = (BaseAdapter) wrapperAdapter.getWrappedAdapter();
             adapter.unregisterDataSetObserver(dataSetObserver);
-            ((AdapterView) absListView).setAdapter(adapter);
+            absListView.setAdapter(adapter);
         }
     }
 
@@ -104,11 +105,11 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
         }
 
         /**
-         * Set the offset from the end of the list at which the load more event needs to be triggered. Default offset
-         * if 5.
+         * Set the offset from the end of the list at which the load more event needs to be triggered.
+         * Default offset is 5.
          *
          * @param threshold number of items from the end of the list.
-         * @return {@link com.paginate.abslistview.AbsListViewPaginate.Builder}
+         * @return {@link AbsListViewPaginate.Builder}
          */
         public Builder setLoadingTriggerThreshold(int threshold) {
             this.loadingTriggerThreshold = threshold;
@@ -121,7 +122,7 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
          * needed to use this method to add additional OnScrollListener (as delegate).
          *
          * @param onScrollListener that will be called when list is scrolled.
-         * @return {@link com.paginate.abslistview.AbsListViewPaginate.Builder}
+         * @return {@link AbsListViewPaginate.Builder}
          */
         public Builder setOnScrollListener(AbsListView.OnScrollListener onScrollListener) {
             this.onScrollListener = onScrollListener;
@@ -130,14 +131,14 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
 
         /**
          * Setup loading row. If loading row is used original adapter set on AbsListView will be wrapped with
-         * internal adapter that will add loading row as the last item in the list. Paginate will observer the
-         * changes upon original adapter and remove loading row if there is no more data to load. By default loading
-         * row will be added.
+         * internal adapter that will add loading row as the last item in the list. Paginate will observe the
+         * changes upon original adapter and remove loading row if there is no more data to load.
+         * By default loading row will be added.
          *
          * @param addLoadingListItem true if loading row needs to be added, false otherwise.
-         * @return {@link com.paginate.abslistview.AbsListViewPaginate.Builder}
-         * @see {@link com.paginate.Paginate.Callbacks#hasLoadedAllItems()}
-         * @see {@link com.paginate.abslistview.AbsListViewPaginate.Builder#setLoadingListItemCreator(LoadingListItemCreator)}
+         * @return {@link AbsListViewPaginate.Builder}
+         * @see Paginate.Callbacks#hasLoadedAllItems()
+         * @see AbsListViewPaginate.Builder#setLoadingListItemCreator(LoadingListItemCreator)
          */
         public Builder addLoadingListItem(boolean addLoadingListItem) {
             this.addLoadingListItem = addLoadingListItem;
@@ -148,7 +149,7 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
          * Set custom loading list item creator. If no creator is set default one will be used.
          *
          * @param loadingListItemCreator Creator that will ne called for inflating and binding loading list item.
-         * @return {@link com.paginate.abslistview.AbsListViewPaginate.Builder}
+         * @return {@link AbsListViewPaginate.Builder}
          */
         public Builder setLoadingListItemCreator(LoadingListItemCreator loadingListItemCreator) {
             this.loadingListItemCreator = loadingListItemCreator;
@@ -169,9 +170,8 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
                 loadingListItemCreator = LoadingListItemCreator.DEFAULT;
             }
 
-            return new AbsListViewPaginate(absListView, callbacks, loadingTriggerThreshold, onScrollListener,
-                    addLoadingListItem, loadingListItemCreator);
+            return new AbsListViewPaginate(absListView, callbacks, loadingTriggerThreshold,
+                onScrollListener, addLoadingListItem, loadingListItemCreator);
         }
     }
-
 }

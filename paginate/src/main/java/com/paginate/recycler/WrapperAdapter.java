@@ -1,23 +1,26 @@
 package com.paginate.recycler;
 
-import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int ITEM_VIEW_TYPE_LOADING = Integer.MAX_VALUE - 50; // Magic
 
-    private final RecyclerView.Adapter wrappedAdapter;
+    private final RecyclerView.Adapter<RecyclerView.ViewHolder> wrappedAdapter;
     private final LoadingListItemCreator loadingListItemCreator;
     private boolean displayLoadingRow = true;
 
-    public WrapperAdapter(RecyclerView.Adapter adapter, LoadingListItemCreator creator) {
+    public WrapperAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter, LoadingListItemCreator creator) {
         this.wrappedAdapter = adapter;
         this.loadingListItemCreator = creator;
     }
 
+    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == ITEM_VIEW_TYPE_LOADING) {
             return loadingListItemCreator.onCreateViewHolder(parent, viewType);
         } else {
@@ -26,7 +29,7 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         if (isLoadingRow(position)) {
             loadingListItemCreator.onBindViewHolder(holder, position);
         } else {
@@ -55,7 +58,7 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         wrappedAdapter.setHasStableIds(hasStableIds);
     }
 
-    public RecyclerView.Adapter getWrappedAdapter() {
+    public RecyclerView.Adapter<RecyclerView.ViewHolder> getWrappedAdapter() {
         return wrappedAdapter;
     }
 

@@ -15,16 +15,6 @@ public class IntegerAdapter extends BindableAdapter<Integer> {
         this.VALUES = values;
     }
 
-    public int getPositionForValue(long value) {
-        for (int i = 0; i < VALUES.length; i++) {
-            if (VALUES[i] == value) {
-                return i;
-            }
-        }
-        return 3; // Default to 2000 if something changes.
-    }
-
-
     @Override
     public int getCount() {
         return VALUES.length;
@@ -54,6 +44,20 @@ public class IntegerAdapter extends BindableAdapter<Integer> {
     @Override
     public View newDropDownView(LayoutInflater inflater, int position, ViewGroup container) {
         return inflater.inflate(android.R.layout.simple_spinner_dropdown_item, container, false);
+    }
+
+    /**
+     * Returns index of value in adapters data set.
+     * Returns -1 if value is not found.
+     */
+    public int getPositionForValue(int value) {
+        for (int i = 0; i < VALUES.length; i++) {
+            if (VALUES[i] == value) {
+                return i;
+            }
+        }
+        // value not found
+        return -1;
     }
 
 }

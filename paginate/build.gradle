@@ -1,16 +1,16 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion versions.compileSdk
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
     }
 }
 
 dependencies {
-    compile deps.recyclerview
+    implementation deps.recyclerview
 }
 
 apply from: rootProject.file('gradle/maven-push.gradle')

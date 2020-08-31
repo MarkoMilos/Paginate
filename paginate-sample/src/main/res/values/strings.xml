@@ -4,5 +4,6 @@
     <string name="app_name">Paginate Sample</string>
     <string name="drawer_closed">Drawer closed</string>
     <string name="drawer_open">Drawer open</string>
+    <string name="settings">Settings</string>
 
 </resources>

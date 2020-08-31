@@ -1,7 +1,8 @@
 package com.paginate;
 
-import android.support.v7.widget.RecyclerView;
 import android.widget.AbsListView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.paginate.abslistview.AbsListViewPaginate;
 import com.paginate.recycler.RecyclerPaginate;
@@ -9,12 +10,14 @@ import com.paginate.recycler.RecyclerPaginate;
 public abstract class Paginate {
 
     public interface Callbacks {
-        /** Called when next page of data needs to be loaded. */
+        /**
+         * Called when next page of data needs to be loaded.
+         */
         void onLoadMore();
 
         /**
          * Called to check if loading of the next page is currently in progress. While loading is in progress
-         * {@link com.paginate.Paginate.Callbacks#onLoadMore} won't be called.
+         * {@link Paginate.Callbacks#onLoadMore} won't be called.
          *
          * @return true if loading is currently in progress, false otherwise.
          */
@@ -22,7 +25,7 @@ public abstract class Paginate {
 
         /**
          * Called to check if there is more data (more pages) to load. If there is no more pages to load, {@link
-         * com.paginate.Paginate.Callbacks#onLoadMore} won't be called and loading row, if used, won't be added.
+         * Paginate.Callbacks#onLoadMore} won't be called and loading row, if used, won't be added.
          *
          * @return true if all pages has been loaded, false otherwise.
          */
@@ -54,7 +57,7 @@ public abstract class Paginate {
      *
      * @param recyclerView RecyclerView that will have pagination functionality.
      * @param callback     pagination callbacks.
-     * @return {@link com.paginate.recycler.RecyclerPaginate.Builder}
+     * @return {@link RecyclerPaginate.Builder}
      */
     public static RecyclerPaginate.Builder with(RecyclerView recyclerView, Callbacks callback) {
         return new RecyclerPaginate.Builder(recyclerView, callback);
@@ -65,10 +68,9 @@ public abstract class Paginate {
      *
      * @param absListView AbsListView that will have pagination functionality (ListView or GridView).
      * @param callback    pagination callbacks.
-     * @return {@link com.paginate.abslistview.AbsListViewPaginate.Builder}
+     * @return {@link AbsListViewPaginate.Builder}
      */
     public static AbsListViewPaginate.Builder with(AbsListView absListView, Callbacks callback) {
         return new AbsListViewPaginate.Builder(absListView, callback);
     }
-
 }

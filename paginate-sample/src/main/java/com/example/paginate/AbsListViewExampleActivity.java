@@ -1,5 +1,6 @@
 package com.example.paginate;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -18,10 +19,10 @@ import com.paginate.Paginate;
 import com.paginate.abslistview.LoadingListItemCreator;
 
 public class AbsListViewExampleActivity extends BaseActivity implements
-        Paginate.Callbacks,
-        AbsListView.OnScrollListener,
-        AdapterView.OnItemClickListener,
-        AdapterView.OnItemLongClickListener {
+    Paginate.Callbacks,
+    AbsListView.OnScrollListener,
+    AdapterView.OnItemClickListener,
+    AdapterView.OnItemLongClickListener {
 
     private PersonAdapter adapter;
     private boolean loading = false;
@@ -48,12 +49,10 @@ public class AbsListViewExampleActivity extends BaseActivity implements
 
         int layoutId;
         switch (absListViewType) {
-            case LIST_VIEW:
-                layoutId = R.layout.listview_layout;
-                break;
             case GRID_VIEW:
                 layoutId = R.layout.gridview_layout;
                 break;
+            case LIST_VIEW:  // fall through
             default:
                 layoutId = R.layout.listview_layout;
                 break;
@@ -74,11 +73,11 @@ public class AbsListViewExampleActivity extends BaseActivity implements
         absListView.setOnItemLongClickListener(this);
 
         paginate = Paginate.with(absListView, this)
-                .setOnScrollListener(this)
-                .setLoadingTriggerThreshold(threshold)
-                .addLoadingListItem(addLoadingRow)
-                .setLoadingListItemCreator(customLoadingListItem ? new CustomLoadingListItemCreator() : null)
-                .build();
+            .setOnScrollListener(this)
+            .setLoadingTriggerThreshold(threshold)
+            .addLoadingListItem(addLoadingRow)
+            .setLoadingListItemCreator(customLoadingListItem ? new CustomLoadingListItemCreator() : null)
+            .build();
     }
 
     @Override
@@ -138,6 +137,7 @@ public class AbsListViewExampleActivity extends BaseActivity implements
             return view;
         }
 
+        @SuppressLint("DefaultLocale")
         @Override
         public void bindView(int position, View view) {
             VH vh = (VH) view.getTag();

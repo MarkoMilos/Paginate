@@ -6,7 +6,9 @@ import android.view.ViewGroup;
 
 import com.paginate.R;
 
-/** AbsListView creator that will be called to create and bind loading list item */
+/**
+ * AbsListView creator that will be called to create and bind loading list item.
+ */
 public interface LoadingListItemCreator {
 
     /**
@@ -29,7 +31,8 @@ public interface LoadingListItemCreator {
     LoadingListItemCreator DEFAULT = new LoadingListItemCreator() {
         @Override
         public View newView(int position, ViewGroup parent) {
-            return LayoutInflater.from(parent.getContext()).inflate(R.layout.loading_row, parent, false);
+            return LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.loading_row, parent, false);
         }
 
         @Override
