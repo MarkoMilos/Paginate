@@ -160,7 +160,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         Spinner networkDelayView = (Spinner) findViewById(R.id.spinner_delay);
-        final IntegerAdapter delayAdapter = new IntegerAdapter(this, new int[]{1000, 2000, 3000, 5000});
+        final IntegerAdapter delayAdapter = new IntegerAdapter(this, new int[]{500, 1000, 2000, 3000, 5000});
         networkDelayView.setAdapter(delayAdapter);
         networkDelayView.setSelection(delayAdapter.getPositionForValue((int) networkDelay));
         networkDelayView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

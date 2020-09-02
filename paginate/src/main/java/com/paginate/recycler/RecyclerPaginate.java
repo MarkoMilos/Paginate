@@ -1,5 +1,8 @@
 package com.paginate.recycler;
 
+import android.os.Handler;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -67,14 +70,53 @@ public final class RecyclerPaginate extends Paginate {
         recyclerView.removeOnScrollListener(mOnScrollListener);   // Remove scroll listener
         if (recyclerView.getAdapter() instanceof WrapperAdapter) {
             WrapperAdapter wrapperAdapter = (WrapperAdapter) recyclerView.getAdapter();
-            RecyclerView.Adapter adapter = wrapperAdapter.getWrappedAdapter();
-            adapter.unregisterAdapterDataObserver(mDataObserver); // Remove data observer
-            recyclerView.setAdapter(adapter);                     // Swap back original adapter
+            RecyclerView.Adapter originalAdapter = wrapperAdapter.getWrappedAdapter();
+            originalAdapter.unregisterAdapterDataObserver(mDataObserver); // Remove data observer
+            swapBackAdapter(originalAdapter);                             // Swap back original adapter
         }
         if (recyclerView.getLayoutManager() instanceof GridLayoutManager && wrapperSpanSizeLookup != null) {
             // Swap back original SpanSizeLookup
             GridLayoutManager.SpanSizeLookup spanSizeLookup = wrapperSpanSizeLookup.getWrappedSpanSizeLookup();
             ((GridLayoutManager) recyclerView.getLayoutManager()).setSpanSizeLookup(spanSizeLookup);
+        }
+    }
+
+    private void swapBackAdapter(final RecyclerView.Adapter adapter) {
+        final RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearManager = (LinearLayoutManager) layoutManager;
+
+            // get first visible view and its position
+            int firstVisibleItemPosition = linearManager.findFirstVisibleItemPosition();
+            View firstVisibleChild = layoutManager.findViewByPosition(firstVisibleItemPosition);
+
+            // get scroll offsets of the view
+            int xPixelScroll = 0;
+            int yPixelScroll = 0;
+            if (firstVisibleChild != null) {
+                if (!linearManager.getReverseLayout()) {
+                    xPixelScroll = firstVisibleChild.getLeft();
+                    yPixelScroll = firstVisibleChild.getTop();
+                } else {
+                    xPixelScroll = firstVisibleChild.getRight() - recyclerView.getWidth();
+                    yPixelScroll = firstVisibleChild.getBottom() - recyclerView.getHeight();
+                }
+            }
+
+            // set adapter and scroll to the item position that was displayed
+            // when WrapperAdapter was used
+            recyclerView.setAdapter(adapter);
+            recyclerView.scrollToPosition(firstVisibleItemPosition);
+            recyclerView.scrollBy(-xPixelScroll, -yPixelScroll);
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            recyclerView.setAdapter(adapter);
+            // https://issuetracker.google.com/issues/37017287
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    ((StaggeredGridLayoutManager) layoutManager).invalidateSpanAssignments();
+                }
+            });
         }
     }
 

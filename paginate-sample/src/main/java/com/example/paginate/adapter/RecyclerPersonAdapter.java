@@ -51,9 +51,8 @@ public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAd
     }
 
     public void add(List<Person> items) {
-        int previousDataSize = this.data.size();
-        this.data.addAll(items);
-        notifyItemRangeInserted(previousDataSize, items.size());
+        data.addAll(items);
+        notifyDataSetChanged();
     }
 
     public static class PersonVH extends RecyclerView.ViewHolder {
