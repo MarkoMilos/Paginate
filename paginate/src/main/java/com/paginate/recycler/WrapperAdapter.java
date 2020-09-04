@@ -16,6 +16,7 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public WrapperAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter, LoadingListItemCreator creator) {
         this.wrappedAdapter = adapter;
         this.loadingListItemCreator = creator;
+        this.setHasStableIds(adapter.hasStableIds());
     }
 
     @NonNull
