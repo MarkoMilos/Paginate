@@ -53,12 +53,6 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return isLoadingRow(position) ? RecyclerView.NO_ID : wrappedAdapter.getItemId(position);
     }
 
-    @Override
-    public void setHasStableIds(boolean hasStableIds) {
-        super.setHasStableIds(hasStableIds);
-        wrappedAdapter.setHasStableIds(hasStableIds);
-    }
-
     public RecyclerView.Adapter<RecyclerView.ViewHolder> getWrappedAdapter() {
         return wrappedAdapter;
     }
