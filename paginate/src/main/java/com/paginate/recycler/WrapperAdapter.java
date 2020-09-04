@@ -64,7 +64,11 @@ class WrapperAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     void displayLoadingRow(boolean displayLoadingRow) {
         if (this.displayLoadingRow != displayLoadingRow) {
             this.displayLoadingRow = displayLoadingRow;
-            notifyDataSetChanged();
+            if (this.displayLoadingRow) {
+                notifyItemInserted(wrappedAdapter.getItemCount());
+            } else {
+                notifyItemRemoved(wrappedAdapter.getItemCount());
+            }
         }
     }
 
