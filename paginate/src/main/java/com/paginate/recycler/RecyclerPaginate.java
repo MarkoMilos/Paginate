@@ -35,10 +35,11 @@ public final class RecyclerPaginate extends Paginate {
         recyclerView.addOnScrollListener(mOnScrollListener);
 
         if (addLoadingListItem) {
-            // Wrap existing adapter with new adapter that will add loading row
+            // Wrap existing adapter with new WrapperAdapter that will add loading row
             RecyclerView.Adapter adapter = recyclerView.getAdapter();
             assert adapter != null;
             wrapperAdapter = new WrapperAdapter(adapter, loadingListItemCreator);
+            wrapperAdapter.displayLoadingRow(!callbacks.hasLoadedAllItems());
             adapter.registerAdapterDataObserver(mDataObserver);
             recyclerView.setAdapter(wrapperAdapter);
 

@@ -55,6 +55,12 @@ public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAd
         notifyDataSetChanged();
     }
 
+    public void replace(List<Person> items) {
+        data.clear();
+        data.addAll(items);
+        notifyDataSetChanged();
+    }
+
     public static class PersonVH extends RecyclerView.ViewHolder {
         TextView tvFullName;
 

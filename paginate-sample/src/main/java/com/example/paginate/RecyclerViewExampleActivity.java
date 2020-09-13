@@ -48,7 +48,7 @@ public class RecyclerViewExampleActivity extends BaseActivity implements Paginat
             paginate.unbind();
         }
         handler.removeCallbacks(fakeCallback);
-        adapter = new RecyclerPersonAdapter(DataProvider.getRandomData(20));
+        adapter = new RecyclerPersonAdapter(DataProvider.getRandomData(initialItems));
         loading = false;
         page = 0;
 

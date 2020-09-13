@@ -2,6 +2,7 @@ package com.example.paginate;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -38,9 +39,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     // Common options
-    protected int threshold = 4;
-    protected int totalPages = 3;
-    protected int itemsPerPage = 10;
+    protected int threshold = 5;
+    protected int totalPages = 10;
+    protected int initialItems = 2;
+    protected int itemsPerPage = 2;
     protected long networkDelay = 2000;
     protected boolean addLoadingRow = true;
     protected boolean customLoadingListItem = false;
@@ -126,7 +128,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         });
 
         Spinner pagesView = (Spinner) findViewById(R.id.spinner_pages);
-        final IntegerAdapter pagesAdapter = new IntegerAdapter(this, new int[]{1, 2, 3, 4, 5, 6, 7});
+        final IntegerAdapter pagesAdapter = new IntegerAdapter(this, new int[]{1, 2, 3, 4, 5, 6, 7, 10});
         pagesView.setAdapter(pagesAdapter);
         pagesView.setSelection(pagesAdapter.getPositionForValue(totalPages));
         pagesView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

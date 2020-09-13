@@ -43,7 +43,7 @@ public class AbsListViewExampleActivity extends BaseActivity implements
             paginate.unbind();
         }
         handler.removeCallbacks(fakeCallback);
-        adapter = new PersonAdapter(this, DataProvider.getRandomData(20));
+        adapter = new PersonAdapter(this, DataProvider.getRandomData(initialItems));
         loading = false;
         page = 0;
 

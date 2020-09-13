@@ -41,8 +41,9 @@ public final class AbsListViewPaginate extends Paginate implements EndScrollList
                 throw new IllegalStateException("Adapter needs to be subclass of BaseAdapter");
             }
 
-            // Wrap existing adapter with new adapter that will add loading row
+            // Wrap existing adapter with WrapperAdapter that will add loading row
             wrapperAdapter = new WrapperAdapter(adapter, loadingListItemCreator);
+            wrapperAdapter.displayLoadingRow(!callbacks.hasLoadedAllItems());
             adapter.registerDataSetObserver(dataSetObserver);
             absListView.setAdapter(wrapperAdapter);
         }
