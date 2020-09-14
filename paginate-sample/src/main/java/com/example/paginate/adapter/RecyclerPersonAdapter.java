@@ -1,5 +1,6 @@
 package com.example.paginate.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAdapter.PersonVH> implements RecyclerOnItemClickListener {
+
+    private static final String TAG = "RecyclerPersonAdapter";
 
     private final List<Person> data;
 
@@ -41,6 +44,18 @@ public class RecyclerPersonAdapter extends RecyclerView.Adapter<RecyclerPersonAd
     @Override
     public int getItemCount() {
         return data.size();
+    }
+
+    @Override
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        Log.d(TAG, "onAttachedToRecyclerView");
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        Log.d(TAG, "onDetachedFromRecyclerView");
     }
 
     @Override
