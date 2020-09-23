@@ -27,14 +27,14 @@ Setup
 
 Gradle:
 ```groovy
-compile 'com.github.markomilos:paginate:0.5.1'
+compile 'com.github.markomilos:paginate:1.0.0'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.github.markomilos</groupId>
   <artifactId>paginate</artifactId>
-  <version>0.5.1</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 
@@ -148,11 +148,7 @@ Developed By
 --------
 Marko Milos (marko.milos.hr@gmail.com)
 
-<a href="https://plus.google.com/u/0/+MarkoMilosMM">
-  <img alt="Follow me on Google+"
-       src="https://raw.githubusercontent.com/MarkoMilos/Paginate/master/art/gplus.png" />
-</a>
-<a href="https://twitter.com/markomilos5">
+<a href="https://twitter.com/mysterymarks">
   <img alt="Follow me on Twitter"
        src="https://raw.githubusercontent.com/MarkoMilos/Paginate/master/art/twitter.png" />
 </a>
@@ -165,7 +161,7 @@ Marko Milos (marko.milos.hr@gmail.com)
 License
 --------
 
-    Copyright 2015 Marko Milos
+    Copyright 2020 Marko Milos
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
